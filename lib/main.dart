@@ -40,10 +40,6 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
 
-  handleActionPress() {
-    print("Hello");
-  }
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -52,14 +48,18 @@ class HomeState extends State<Home> {
         title: Text("Redux Flutter Tutorial"),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Container(
-          child: Column(
+      body:
+        Container(
+          alignment: AlignmentDirectional.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text("Number of times press:"),
+              Text("Number of times press:   "),
               new Counter()
             ],
           )
-      ),
+        ),
       floatingActionButton: new IncreaseCountButton()
     );
   }
