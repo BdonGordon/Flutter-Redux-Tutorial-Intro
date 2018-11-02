@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_red_tutorial/modules/appState.dart';
-import 'package:flutter_red_tutorial/store/reducers.dart';
+import 'package:flutter_red_tutorial/models/appState.dart';
+import 'package:flutter_red_tutorial/reducers/rootReducers.dart';
+import 'package:flutter_red_tutorial/containers/counter/counter.dart';
+import 'package:flutter_red_tutorial/containers/counter/increaseCounter.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   final store = new Store<AppState> (
-    appReducer,
+    rootReducer,
     initialState: new AppState(),
     middleware: []
   );
@@ -51,12 +53,14 @@ class HomeState extends State<Home> {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Container(
-          child: Text("hello")
+          child: Column(
+            children: <Widget>[
+              Text("Number of times press:"),
+              new Counter()
+            ],
+          )
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: handleActionPress(),
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: new IncreaseCountButton()
     );
   }
 }
