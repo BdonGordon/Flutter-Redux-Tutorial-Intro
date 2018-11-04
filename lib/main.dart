@@ -40,10 +40,6 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
 
-  handleActionPress() {
-    print("Hello");
-  }
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
