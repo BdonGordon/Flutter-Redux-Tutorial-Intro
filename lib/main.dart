@@ -9,8 +9,9 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   final store = new Store<AppState> (
     appReducer,
-    initialState: new AppState(),
-    middleware: []
+    initialState: AppState.inital(),
+    middleware: [
+    ]
   );
 
   // This widget is the root of your application.
