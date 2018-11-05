@@ -6,8 +6,6 @@ class AddCommentAction {}
 IComment commentReducer(IComment comment, action) {
   switch(action.runtimeType) {
     case AddCommentAction: {
-      print("By: " + comment.userName);
-      print(comment.commentText);
 
       return comment;
     }

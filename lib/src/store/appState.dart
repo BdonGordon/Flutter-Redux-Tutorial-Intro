@@ -1,13 +1,25 @@
 import 'package:flutter_red_tutorial/src/models/Comment.dart';
+import 'package:flutter/foundation.dart';
 
 class AppState {
-  final IComment comment;
+  final IComment commentState;
 
-  AppState({this.comment});
+  AppState({
+    @required this.commentState
+  });
 
-  AppState copyWith({IComment comment}) {
+  factory AppState.inital() {
     return AppState(
-      comment: this.comment
+      commentState: IComment.initial()
+    );
+  }
+
+  /// This creates a new state by substituting properties in the previous one
+  AppState copyWith({
+    IComment commentState
+  }) {
+    return AppState(
+      commentState: commentState ?? this.commentState
     );
   }
 }

@@ -3,6 +3,6 @@ import 'package:flutter_red_tutorial/src/actionreducers/comment.dart';
 
 AppState appReducer(AppState state, action) {
   return new AppState(
-    comment: commentReducer(state.comment, action)
+    commentState: commentReducer(state.commentState, action)
   );
 }
