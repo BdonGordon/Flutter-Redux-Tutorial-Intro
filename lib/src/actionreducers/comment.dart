@@ -9,9 +9,10 @@ import 'package:redux/redux.dart';
 
 /// These will still change the AppState... just looks different from what we're used to
 class AddCommentAction {
-  final IComment comment;
+  final String userName;
+  final String commentText;
 
-  AddCommentAction(this.comment);
+  AddCommentAction(this.userName, this.commentText);
 }
 
 final commentReducer = combineReducers<IComment>([
@@ -19,5 +20,5 @@ final commentReducer = combineReducers<IComment>([
 ]);
 
 IComment _postComment(IComment state, AddCommentAction action) {
-  return state.copyWith(userName: action.comment.userName, commentText: action.comment.commentText);
+  return state.copyWith(userName: action.userName, commentText: action.commentText);
 }

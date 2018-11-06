@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_red_tutorial/src/store/createStore.dart';
+import 'package:flutter_red_tutorial/src/store/middleware/ValidationMiddleware.dart';
+import 'package:flutter_red_tutorial/src/views/Comment/CommentContainer.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_red_tutorial/src/store/appState.dart';
 import 'package:flutter_red_tutorial/src/store/appReducer.dart';
 
-void main() => runApp(new MyApp());
+void main() async {
+  var store = await createStore();
+  runApp(new MyApp(store));
+}
 
-class MyApp extends StatelessWidget {
-  final store = new Store<AppState> (
-    appReducer,
-    initialState: AppState.inital(),
-    middleware: [
-    ]
-  );
+class MyApp extends StatefulWidget {
+  final Store<AppState> store;
 
+  MyApp(this.store);
+
+  MyAppState createState() {
+    return new MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp>{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new StoreProvider(
-        store: store,
+    return new StoreProvider<AppState>(
+        store: widget.store,
         child: MaterialApp(
           title: 'Redux Flutter',
           theme: new ThemeData(
@@ -57,7 +66,7 @@ class HomeState extends State<Home> {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                child: Text("TextField")
+                child: Comment()
               ),
               Expanded(
                 child: Container(

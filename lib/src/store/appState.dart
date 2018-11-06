@@ -8,7 +8,7 @@ class AppState {
     @required this.commentState
   });
 
-  factory AppState.inital() {
+  factory AppState.initial() {
     return AppState(
       commentState: IComment.initial()
     );

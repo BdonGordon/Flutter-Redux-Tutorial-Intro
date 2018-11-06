@@ -19,7 +19,7 @@ class CommentViewModel {
       userName: store.state.commentState.userName,
       commentText: store.state.commentState.commentText,
       postComment: (userName, commentText) =>
-          store.dispatch(new AddCommentAction(new IComment(userName: userName, commentText: commentText )))
+          store.dispatch(new AddCommentAction(userName, commentText))
     );
   }
 }
@@ -31,11 +31,13 @@ class Comment extends StatefulWidget {
 }
 
 class CommentState extends State<Comment> {
-  String _userName = "Brandon Gordon";
+  String _userName = "Brandon Boordon";
   String _commentText;
 
   handleInputChange(String input) {
-
+    setState(() {
+      this._commentText = input;
+    });
   }
 
   @override
