@@ -11,6 +11,8 @@ class ValidationMiddleware extends MiddlewareClass<AppState> {
     switch(action.runtimeType) {
       case AddCommentAction: {
         print("Dispatching: $action");
+        print("Values: ${store.state.commentState.userName} "
+            " and ${store.state.commentState.commentText}");
         break;
       }
     }

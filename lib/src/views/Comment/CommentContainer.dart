@@ -44,9 +44,9 @@ class CommentState extends State<Comment> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return StoreConnector<AppState, CommentViewModel>(
-      converter: (store) => CommentViewModel(
-
-      ),
+      /// These parts are needed
+      onInit: (store){},
+      converter: (store) => CommentViewModel.fromStore(store),
       builder: (BuildContext context, CommentViewModel viewModel) {
         return TextField(
           onChanged: (input) => handleInputChange(input),
