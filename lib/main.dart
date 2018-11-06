@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_red_tutorial/src/store/createStore.dart';
-import 'package:flutter_red_tutorial/src/store/middleware/ValidationMiddleware.dart';
-import 'package:flutter_red_tutorial/src/views/Comment/CommentContainer.dart';
+import 'package:flutter_red_tutorial/src/views/Comment/Comment.dart';
+import 'package:flutter_red_tutorial/src/views/Comment/Comments.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_red_tutorial/src/store/appState.dart';
-import 'package:flutter_red_tutorial/src/store/appReducer.dart';
 
 void main() async {
   var store = await createStore();
@@ -26,6 +25,7 @@ class MyAppState extends State<MyApp>{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return new StoreProvider<AppState>(
         store: widget.store,
         child: MaterialApp(
@@ -74,9 +74,8 @@ class HomeState extends State<Home> {
                   ///This
                   alignment: FractionalOffset.topLeft,
                   decoration: BoxDecoration(
-                    color: Colors.red
                   ),
-                  child: Text("ListView")
+                  child: Comments()
                 ),
               ),
             ],
