@@ -12,6 +12,7 @@ class Comment extends StatefulWidget {
 class CommentState extends State<Comment> {
   String _userName = "Brandon Boordon";
   String _commentText;
+  final TextEditingController textEditingController = new TextEditingController();
 
   handleInputChange(String input) {
     setState(() {
@@ -19,9 +20,16 @@ class CommentState extends State<Comment> {
     });
   }
 
+  clearTextFieldData() {
+    this.textEditingController.clear();
+    setState((){
+      this._commentText = "";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return StoreConnector<AppState, CommentViewModel>(
       /// These parts are needed
       onInit: (store){},
@@ -29,11 +37,26 @@ class CommentState extends State<Comment> {
       builder: (BuildContext context, CommentViewModel viewModel) {
         return TextField(
           onChanged: (input) => handleInputChange(input),
+          controller: textEditingController,
           decoration: InputDecoration(
               hintText: "Enter comment",
               suffixIcon: IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () => viewModel.postComment(this._userName, this._commentText)
+                icon: Icon(Icons.send),
+                onPressed: (){
+                  if(this._commentText != null && this._commentText.length > 0) {
+                    viewModel.postComment(this._userName, this._commentText);
+                    clearTextFieldData();
+                  }
+                  else {
+                    SnackBar theBar = SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(
+                        "Please enter a comment to post."
+                      )
+                    );
+                    Scaffold.of(context).showSnackBar(theBar);
+                  }
+                }
               )
           ),
         );

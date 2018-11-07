@@ -22,8 +22,9 @@ final commentReducer = combineReducers<IComment>([
 
 IComment _postComment(IComment state, AddCommentAction action) {
   List<IComment> newCommentsList = state.commentsList;
-  IComment addedComment = new IComment(userName: action.userName, commentText: action.commentText);
+  DateTime newlyPostedTime = DateTime.now();
+  IComment addedComment = new IComment(userName: action.userName, commentText: action.commentText, postedTime: newlyPostedTime);
   newCommentsList.add(addedComment);
 
-  return state.copyWith(userName: action.userName, commentText: action.commentText, commentsList: newCommentsList);
+  return state.copyWith(userName: addedComment.userName, commentText: addedComment.commentText, postedTime: newlyPostedTime, commentsList: newCommentsList);
 }

@@ -13,17 +13,12 @@ class CommentsState extends State<Comments> {
 
   @override
   Widget build(BuildContext context) {
-    List<IComment> comments = <IComment>[];
-    IComment commentOne = new IComment(userName: "Jordy", commentText: "It's home time");
-    IComment commentTwo = new IComment(userName: "Brad", commentText: "I'm hungry");
-    comments.add(commentOne);
-    comments.add(commentTwo);
-
     // TODO: implement build
     return StoreConnector<AppState, IComment> (
       converter: (store) => store.state.commentState,
       builder: (context, comment) {
         return Container(
+          /// We can use the newly built list of comments
           child: buildComments(comment.commentsList),
         );
       }
@@ -31,10 +26,16 @@ class CommentsState extends State<Comments> {
   }
 
   Widget buildComments(List<IComment> comments) {
+    /// Get the most recently posted
+    comments.sort((IComment a, IComment b) {
+      return b.postedTime.compareTo(a.postedTime);
+    });
+
     final Iterable<ListTile> commentTiles = comments.map((IComment comment){
       return ListTile(
         title: Text(comment.userName),
         subtitle: Text(comment.commentText),
+        trailing: Text(comment.postedTime.toString().substring(0, 10)),
       );
     });
 
