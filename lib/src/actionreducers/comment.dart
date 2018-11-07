@@ -11,6 +11,7 @@ import 'package:redux/redux.dart';
 class AddCommentAction {
   final String userName;
   final String commentText;
+  List<IComment> commentsList;
 
   AddCommentAction(this.userName, this.commentText);
 }
@@ -20,5 +21,9 @@ final commentReducer = combineReducers<IComment>([
 ]);
 
 IComment _postComment(IComment state, AddCommentAction action) {
-  return state.copyWith(userName: action.userName, commentText: action.commentText);
+  List<IComment> newCommentsList = state.commentsList;
+  IComment addedComment = new IComment(userName: action.userName, commentText: action.commentText);
+  newCommentsList.add(addedComment);
+
+  return state.copyWith(userName: action.userName, commentText: action.commentText, commentsList: newCommentsList);
 }

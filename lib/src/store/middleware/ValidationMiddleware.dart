@@ -12,7 +12,7 @@ class ValidationMiddleware extends MiddlewareClass<AppState> {
       case AddCommentAction: {
         print("Dispatching: $action");
         print("Values: ${store.state.commentState.userName} "
-            " and ${store.state.commentState.commentText}");
+            " and ${store.state.commentState.commentText} ${store.state.commentState.commentsList.length}");
         break;
       }
     }
