@@ -24,7 +24,7 @@ class CommentsState extends State<Comments> {
       converter: (store) => store.state.commentState,
       builder: (context, comment) {
         return Container(
-          child: buildComments(comments),
+          child: buildComments(comment.commentsList),
         );
       }
     );

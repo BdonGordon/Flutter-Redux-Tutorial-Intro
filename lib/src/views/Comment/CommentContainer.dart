@@ -23,33 +23,3 @@ class CommentViewModel {
     );
   }
 }
-
-///import 'package:flutter_red_tutorial/src/models/Comment.dart';
-//import 'package:redux/redux.dart';
-//import 'package:flutter_red_tutorial/src/store/appState.dart';
-//import 'package:flutter_red_tutorial/src/actionreducers/comment.dart';
-//
-///// We'll say that the Container is responsible for creating the Model
-///// View
-//class CommentViewModel {
-//  final String userName;
-//  final String commentText;
-//  final List<IComment> commentsList;
-//  final Function(String userName, String commentText, commentsList) postComment;
-//
-//  CommentViewModel({
-//    this.userName, this.commentText, this.postComment, this.commentsList
-//  });
-//
-//  static CommentViewModel fromStore(Store<AppState> store) {
-//    return CommentViewModel(
-//      userName: store.state.commentState.userName,
-//      commentText: store.state.commentState.commentText,
-//      commentsList: store.state.commentState.commentsList,
-//      postComment: (userName, commentText, commentsList) =>
-//          store.dispatch(new AddCommentAction(userName, commentText, commentsList ))
-//    );
-//  }
-//}
-
-
