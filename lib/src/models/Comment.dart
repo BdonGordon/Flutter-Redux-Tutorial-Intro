@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+/// Same idea here just like AppState, but instead we're working with typical Data Types
 
 class IComment {
   final String userName; //simply initialize to nothing
